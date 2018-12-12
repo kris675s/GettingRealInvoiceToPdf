@@ -60,6 +60,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="DatabaseController.cs" />
     <Compile Include="InvoiceProcessing.cs" />
+    <Compile Include="PdfRepo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
