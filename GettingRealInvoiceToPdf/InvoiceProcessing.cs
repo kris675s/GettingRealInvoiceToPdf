@@ -25,9 +25,9 @@ namespace GettingRealInvoiceToPdf
             XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
             //Upper Right Corner
             gfx.DrawString("FakturaNr:" + "6050", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight.LineAlignment());
-            //gfx.DrawString("navn
-            //gfx.DrawString("navn
-            //gfx.DrawString("navn
+            //gfx.DrawString("ny string
+            //gfx.DrawString("ny string
+            //gfx.DrawString("ny string
 
             //Upper Left Corner
             //gfx.DrawString("firstName lastName")
@@ -42,13 +42,15 @@ namespace GettingRealInvoiceToPdf
             //Center of Page
             //gfx.DrawString("article"
             //gfx.DrawString("forloop 1 article per line containing, article id, article name, article price
-            //gfx.DrawString("navn
+            //gfx.DrawString("ny string
             //gfx.DrawString("totalt antal artikler
-            //gfx.DrawString("navn
-            //gfx.DrawString("navn
-            //gfx.DrawString("watermar
+            //gfx.DrawString("ny string
+            //gfx.DrawString("ny string
+            //gfx.DrawString("watermark
 
-            const string filename = "Faktura.pdf";
+            const string filename = "Invoice.pdf";
+
+            //line below is to see the document, delete when done
             document.Save(filename);
             Process.Start(filename);
         }
