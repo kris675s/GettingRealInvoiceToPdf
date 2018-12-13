@@ -17,23 +17,29 @@ namespace GettingRealInvoiceToPdf
     {
         private static DateTime date = new DateTime();
 
-        public void SortedPdf(Id.Pdf)
+        public void SortedPdf(Id, Pdf)
         {
             //user choose filepath directory manually
-            if(true)
+            if (true)
             {
-
+                Properties.Settings1 settings = System.IO.FileInfo(filePath) settings.PropertyChanged as filePath  .Save;
             }
             //sets default filepath if use dont
-            else
+            if else ()
             {
             public static string FilePath { get => filePath; set { filePath = value; } }
             private static string filePath = (@"C:\Program Files\" + @"InvoiceToPdf\" + date.Year + @"\" + date.Month + @"\" + date.Day);
             System.IO.FileInfo PdfInvoice = new System.IO.FileInfo(FilePath);
             }
-            PdfInvoice.Directory.Create(); // If the directory already exists, this method does nothing.
+        
+            else
+            {
+                PdfInvoice.Directory.Create(); // If the directory already exists, this method does nothing.
+            }
         }
+
         document.Save(filename.path());
         Process.Start(filename);
+        }
     }
 }

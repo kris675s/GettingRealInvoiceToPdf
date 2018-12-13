@@ -25,13 +25,13 @@ namespace GettingRealInvoiceToPdf.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("save")]
-        public string Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute("System.IO.FileInfo(filePath)")]
+        public string SaveFolder {
             get {
-                return ((string)(this["Setting"]));
+                return ((string)(this["SaveFolder"]));
             }
             set {
-                this["Setting"] = value;
+                this["SaveFolder"] = value;
             }
         }
     }
