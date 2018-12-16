@@ -14,7 +14,8 @@ using System.Collections;
 namespace GettingRealInvoiceToPdf
 {
     public class PdfRepo
-    {
+    {   
+        //use datetime to create folders for saving files
         private static DateTime date = new DateTime();
 
         public void SortedPdf(Id, Pdf)

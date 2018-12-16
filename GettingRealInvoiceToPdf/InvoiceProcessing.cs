@@ -25,7 +25,7 @@ namespace GettingRealInvoiceToPdf
             XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
             //Upper Right Corner
             gfx.DrawString("FakturaNr:" + "6050", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight.LineAlignment());
-            //gfx.DrawString("ny string
+            //gfx.DrawString("cvr nr
             //gfx.DrawString("ny string
             //gfx.DrawString("ny string
 
@@ -40,13 +40,15 @@ namespace GettingRealInvoiceToPdf
             //gfx.DrawString("Dragonslair Logo
 
             //Center of Page
-            //gfx.DrawString("article"
-            //gfx.DrawString("forloop 1 article per line containing, article id, article name, article price
-            //gfx.DrawString("ny string
+            //gfx.DrawString("articles"
+            //gfx.DrawString("foreach article, 1 article per line containing, article id, article name, article price
             //gfx.DrawString("totalt antal artikler
-            //gfx.DrawString("ny string
-            //gfx.DrawString("ny string
             //gfx.DrawString("watermark
+
+            //lower center page
+            //gfx.DrawString("register for newsletter
+            //gfx.DrawString("
+
 
             const string fileName = "Invoice" + invoiceNr +".pdf";
 

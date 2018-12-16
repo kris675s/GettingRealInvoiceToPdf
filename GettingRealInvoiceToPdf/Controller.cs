@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace GettingRealInvoiceToPdf
 {
-    class Controller
+    public abstract class Controller
     {
+
+        public abstract object NewInvoice(DatabaseController InvoiceData);
+        public abstract object InvoiceData(string Email, int InvoiceNr);
+        private string Email { get; set; }
+        private string InvoiceNr { get; set; }
+        
+        
     }
 }
