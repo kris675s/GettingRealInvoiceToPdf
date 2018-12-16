@@ -48,7 +48,7 @@ namespace GettingRealInvoiceToPdf
             //gfx.DrawString("ny string
             //gfx.DrawString("watermark
 
-            const string fileName = "Invoice.pdf"+invoiceNr;
+            const string fileName = "Invoice" + invoiceNr +".pdf";
 
             //line below is to see the document, delete when done
             document.Save(fileName);
