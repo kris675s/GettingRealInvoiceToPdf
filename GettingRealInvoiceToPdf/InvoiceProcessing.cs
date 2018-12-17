@@ -24,7 +24,7 @@ namespace GettingRealInvoiceToPdf
             XGraphics gfx = XGraphics.FromPdfPage(page);
             XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
             //Upper Right Corner
-            gfx.DrawString("FakturaNr:" + "6050", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight.LineAlignment());
+            gfx.DrawString("FakturaNr:" + "6050", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight.LineAlignment=);
             //gfx.DrawString("cvr nr
             //gfx.DrawString("ny string
             //gfx.DrawString("ny string
