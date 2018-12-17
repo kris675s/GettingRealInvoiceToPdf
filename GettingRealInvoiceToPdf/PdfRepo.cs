@@ -14,28 +14,32 @@ using System.Collections;
 namespace GettingRealInvoiceToPdf
 {
     public class PdfRepo
-    {   
+    {
         //use datetime to create folders for saving files
         private static DateTime date = new DateTime();
+        private static string standardFilePath = (@"C:\Program Files\" + @"InvoiceToPdf\" + date.Year + @"\" + date.Month + @"\" + date.Day);
+            System.IO.FileInfo PdfInvoice = new System.IO.FileInfo(FilePath);
 
-        public void SortedPdf(Id, Pdf)
-        
+        public void SortedPdf()        
         {
             //user choose filepath directory manually
-            if (filePath = default)
+            if (filePath = standardFilePath)
             {
                 Properties.Settings1 settings = System.IO.FileInfo(filePath);
+
+                FilePath = Value;
+                return override FilePath;
             }
             //sets default filepath if use dont
             if else
             {
             public static string FilePath { get => filePath; set { filePath = value; } }
-            private static string filePath = (@"C:\Program Files\" + @"InvoiceToPdf\" + date.Year + @"\" + date.Month + @"\" + date.Day);
-            System.IO.FileInfo PdfInvoice = new System.IO.FileInfo(FilePath);
             }
+            
+            // If the directory already exists, this method does nothing.
             else
             {
-                PdfInvoice.Directory.Create(); // If the directory already exists, this method does nothing.
+                PdfInvoice.Directory.Create(); 
             }
         document.Save(filename.path());
         Process.Start(filename);
