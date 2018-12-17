@@ -9,7 +9,7 @@ namespace GettingRealInvoiceToPdf
 {
     public class EmailProcessing
     { 
-        /* 
+       * / 
             stack overflow attaching a dynamically pdf to a email c# . net
         <system.net>
     <mailSettings>
@@ -18,7 +18,7 @@ namespace GettingRealInvoiceToPdf
       </smtp>
     </mailSettings>
 
-
+        
         SmtpClient smtpClient = new SmtpClient(WebMail.SmtpServer);
         MailMessage email1 = new MailMessage();
         email1.IsBodyHtml = true;
@@ -31,6 +31,8 @@ namespace GettingRealInvoiceToPdf
             var stream = new System.IO.MemoryStream(pdfBytes);
         email1.Attachments.Add(new Attachment(stream, "invoice.pdf"));
             smtpClient.Send(email1);
+
+        return message("all mails have been sent and the list is empty")
      */
     }
 }
