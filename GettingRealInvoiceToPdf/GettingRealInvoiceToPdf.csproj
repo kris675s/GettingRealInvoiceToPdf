@@ -62,6 +62,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="DatabaseController.cs" />
     <Compile Include="EmailProcessing.cs" />
+    <Compile Include="InvoiceData.cs" />
     <Compile Include="InvoiceProcessing.cs" />
     <Compile Include="PdfRepo.cs" />
     <Compile Include="Program.cs" />
