@@ -18,6 +18,8 @@ namespace GettingRealInvoiceToPdf
         //datetime is not compatible to show month and day names
         //this could be edited in a later version for a better user overview (a switch case translation with a list of 12 months)
         private static string filePath = (@"..\\FakturaPdf\" + DateTime.Now.Year + @"\" + DateTime.Now.Month + @"\" + DateTime.Now.Day + @"\");
+
+
         public void ConvertToPDF(InvoiceData invoiceData)
         {
             //create new directory filepaths
@@ -66,6 +68,24 @@ namespace GettingRealInvoiceToPdf
 
             //save file to path
             document.Save(filePath + fileName);
+        }
+        internal static string getPdf(int invoiceNr)
+        {
+            string[] getPdf;
+            /*try
+            {
+            }
+            //catch
+            {
+                throw new Exception();
+            }*/
+                getPdf = Directory.GetFiles(filePath); // mangler søge kodeord for at kunne lokalisere den rigtige faktura, løkkedes ikke med int invoicenr i første forsøg
+            for (int i = 0; i < getPdf.Length; i++)
+            {
+                Console.WriteLine(getPdf[i]);
+            }
+            Console.ReadLine();
+            return getPdf[0];
         }
     }
 }

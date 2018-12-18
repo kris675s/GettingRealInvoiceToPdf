@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GettingRealInvoiceToPdf.Properties" GeneratedClassName="MailUserInfo">
+  <Profiles />
+  <Settings>
+    <Setting Name="Mail" Type="System.String" Scope="User">
+      <Value Profile="(Default)">gettingrealdl@outlook.com</Value>
+    </Setting>
+    <Setting Name="MailPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DLreal2018</Value>
+    </Setting>
+    <Setting Name="SmtpHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp-mail.outlook.com</Value>
+    </Setting>
+    <Setting Name="SmtpPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
