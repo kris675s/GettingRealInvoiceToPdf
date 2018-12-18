@@ -32,7 +32,7 @@ namespace GettingRealInvoiceToPdf
                     cmd.Parameters.Add(new SqlParameter("@Id", "1"));
                     cmd.Parameters.Add(new SqlParameter("@Id", "2"));
                     cmd.Parameters.Add(new SqlParameter("@Id", "3"));
-                    cmd.Parameters.Add(new SqlParameter("@Id", "4"))
+                    cmd.Parameters.Add(new SqlParameter("@Id", "4"));
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
                     {
