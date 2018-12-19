@@ -28,7 +28,7 @@ namespace GettingRealInvoiceToPdf
             //Metode for at tjekke for fejl i afsendelse, og hvis fejl, tilføjer ikke til daliySentInvoices
 
             daliyInvoices.ForEach(x => {
-                EmailProcessing.SendEmail(x.InvoiceNr, x.Email);
+                EmailProcessing.SentEmail(x.InvoiceNr, x.Email);
                 daliySentInvoices.Add(x);
             });
 

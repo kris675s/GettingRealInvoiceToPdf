@@ -10,7 +10,7 @@ namespace GettingRealInvoiceToPdf
 {
     public static class EmailProcessing
     {
-        public static void SendEmail(int invoiceNr, string customerEmail)
+        public static void SentEmail(int invoiceNr, string customerEmail)
         {
             string pdfPath = InvoiceProcessing.getPdf(invoiceNr);
             
