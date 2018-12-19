@@ -36,18 +36,8 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MigraDoc.DocumentObjectModel">
-      <HintPath>..\PDFSharp\MigraDoc\src\MigraDoc.DocumentObjectModel\bin\Debug\MigraDoc.DocumentObjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="MigraDoc.Rendering, Version=1.50.4740.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PDFSharp\MigraDoc\src\MigraDoc.Rendering\bin\Debug\MigraDoc.Rendering.dll</HintPath>
-    </Reference>
     <Reference Include="PdfSharp">
-      <HintPath>..\PDFSharp\PDFsharp\src\PdfSharp\bin\Debug\PdfSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp.Charting">
-      <HintPath>..\PDFSharp\PDFsharp\src\PdfSharp.Charting\bin\Debug\PdfSharp.Charting.dll</HintPath>
+      <HintPath>..\dll\PdfSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
