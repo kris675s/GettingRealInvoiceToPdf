@@ -8,9 +8,9 @@ using System.Net;
 
 namespace GettingRealInvoiceToPdf
 {
-    public class EmailProcessing
+    public static class EmailProcessing
     {
-        public void SendEmail(int invoiceNr, string customerEmail)
+        public static void SendEmail(int invoiceNr, string customerEmail)
         {
             string pdfPath = InvoiceProcessing.getPdf(invoiceNr);
             
