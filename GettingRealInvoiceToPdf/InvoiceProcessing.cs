@@ -12,7 +12,7 @@ using PdfSharp.Pdf.IO;
 
 namespace GettingRealInvoiceToPdf
 {
-    public class InvoiceProcessing
+    public static class InvoiceProcessing
     {
         //datetime used to create folders for saving .pdf without the users need to create new folders themselves
         //datetime is not compatible to show month and day names
@@ -20,7 +20,7 @@ namespace GettingRealInvoiceToPdf
         private static string filePath = (@"..\\FakturaPdf\" + DateTime.Now.Year + @"\" + DateTime.Now.Month + @"\" + DateTime.Now.Day + @"\");
 
 
-        public void ConvertToPDF(InvoiceData invoiceData)
+        public static void ConvertToPDF(InvoiceData invoiceData)
         {
             //create new directory filepaths
             System.IO.Directory.CreateDirectory(filePath);
@@ -72,10 +72,10 @@ namespace GettingRealInvoiceToPdf
         public static string getPdf(int invoiceNr)
         {
             string[] getPdf;
-            string invoicestring = Convert.ToString(invoiceNr);
-            Console.WriteLine(invoicestring);
+            string invoiceString = Convert.ToString(invoiceNr);
+            Console.WriteLine(invoiceString);
             Console.ReadLine();
-            getPdf = Directory.GetFiles(filePath,"666*"); // mangler søge kodeord for at kunne lokalisere den rigtige faktura, løkkedes ikke med int invoicenr i første forsøg
+            getPdf = Directory.GetFiles(filePath, "*" + invoiceString + "*");
             Console.WriteLine(getPdf[0]);
             Console.ReadLine();
             return getPdf[0];
