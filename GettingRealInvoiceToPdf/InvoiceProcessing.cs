@@ -72,6 +72,8 @@ namespace GettingRealInvoiceToPdf
         internal static string getPdf(int invoiceNr)
         {
             string[] getPdf;
+            string invoicestring = Convert.ToString(invoiceNr);
+
             /*try
             {
             }
@@ -79,7 +81,7 @@ namespace GettingRealInvoiceToPdf
             {
                 throw new Exception();
             }*/
-                getPdf = Directory.GetFiles(filePath); // mangler søge kodeord for at kunne lokalisere den rigtige faktura, løkkedes ikke med int invoicenr i første forsøg
+            getPdf = Directory.GetFiles(filePath + invoicestring); // mangler søge kodeord for at kunne lokalisere den rigtige faktura, løkkedes ikke med int invoicenr i første forsøg
             for (int i = 0; i < getPdf.Length; i++)
             {
                 Console.WriteLine(getPdf[i]);

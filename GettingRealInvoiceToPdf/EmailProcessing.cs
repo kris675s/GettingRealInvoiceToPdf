@@ -23,14 +23,14 @@ namespace GettingRealInvoiceToPdf
             smtp.Credentials = new NetworkCredential(Properties.MailUserInfo.Default.Mail, Properties.MailUserInfo.Default.MailPass);
             smtp.Timeout = 20000;
 
-            MailMessage msg = new MailMessage();
-            MailAddress ma = new MailAddress(Properties.MailUserInfo.Default.Mail);
-            msg.To.Add(customerEmail);
-            msg.From = ma;
-            msg.Attachments.Add(new Attachment(pdfPath));
-            msg.Body = "vedhæftet er din faktura for dit køb du har foretaget igennem Dragonslair Webshop";
-            msg.Subject = "Din ordre er på vej";
-            smtp.Send(msg);
+            MailMessage message = new MailMessage();
+            MailAddress mailAdress = new MailAddress(Properties.MailUserInfo.Default.Mail);
+            message.To.Add(customerEmail);
+            message.From = mailAdress;
+            message.Attachments.Add(new Attachment(pdfPath));
+            message.Body = "vedhæftet er din faktura, for det køb du har foretaget, igennem Dragonslair Webshop";
+            message.Subject = "Din ordre er på vej";
+            smtp.Send(message);
         }
     }
 }
