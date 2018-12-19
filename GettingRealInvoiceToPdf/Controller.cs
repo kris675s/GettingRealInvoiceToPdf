@@ -6,14 +6,45 @@ using System.Threading.Tasks;
 
 namespace GettingRealInvoiceToPdf
 {
-    public abstract class Controller
+    public class Controller
     {
+        readonly List<InvoiceData> daliyInvoices = new List<InvoiceData>();
 
-        public abstract object NewInvoice(DatabaseController InvoiceData);
-        public abstract object InvoiceData(string Email, int InvoiceNr);
-        private string Email { get; set; }
-        private string InvoiceNr { get; set; }
-        
+        //Tilføjerfaktura til en liste over alle daglige faktura, conventere til PDF
+        public void NewInvoice(InvoiceData invoiceData)
+        {
+            AddInvoice(invoiceData);
+
+            InvoiceProcessing.ConvertToPDF(invoiceData);
+        }
+
+        //Køre igennem alle faktura og får dem send, holder styr på mails som er afsend eller ikke afsted. Sletter afsendte mails 
+        public void SentDaliyEmails()
+        {
+            List<InvoiceData> daliySentInvoices = new List<InvoiceData>();
+
+            //menu.invoicesNotToSent(daliyInvoices);
+
+            //Metode for at tjekke for fejl i afsendelse, og hvis fejl, tilføjer ikke til daliySentInvoices
+
+            daliyInvoices.ForEach(x => {
+                EmailProcessing.SentEmail(x.InvoiceNr, x.Email);
+                daliySentInvoices.Add(x);
+            });
+
+            daliySentInvoices.ForEach(x => RemoveInvoice(x));
+
+            //Menu X Mails not sent or all sent without problems
+        }
+
+        private void AddInvoice(InvoiceData invoiceData)
+        {
+            daliyInvoices.Add(invoiceData);
+        }
+        private void RemoveInvoice(InvoiceData invoiceData)
+        {
+            daliyInvoices.Remove(invoiceData);
+        }
         
     }
 }

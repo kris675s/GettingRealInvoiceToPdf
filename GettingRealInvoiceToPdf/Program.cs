@@ -10,8 +10,9 @@ namespace GettingRealInvoiceToPdf
 {
     public class Program
     {
-        
-        public object InvoiceData;
-        
+        static void Main(string[] args)
+        {
+            string s = InvoiceProcessing.getPdf(666);
+        }
     }
 }
