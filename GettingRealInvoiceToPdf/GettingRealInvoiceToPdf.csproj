@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
-    <Compile Include="DatabaseController.cs" />
+    <Compile Include="DatabaseProcessing.cs" />
     <Compile Include="EmailProcessing.cs" />
     <Compile Include="InvoiceData.cs" />
     <Compile Include="InvoiceProcessing.cs" />

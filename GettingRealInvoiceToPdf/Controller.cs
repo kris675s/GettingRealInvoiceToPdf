@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace GettingRealInvoiceToPdf
 {
-    public class Controller
+    public static class Controller
     {
-        readonly List<InvoiceData> daliyInvoices = new List<InvoiceData>();
+        readonly static List<InvoiceData> daliyInvoices = new List<InvoiceData>();
 
         //Tilføjerfaktura til en liste over alle daglige faktura, conventere til PDF
-        public void NewInvoice(InvoiceData invoiceData)
+        public static void NewInvoice(InvoiceData invoiceData)
         {
             AddInvoice(invoiceData);
 
@@ -19,7 +19,7 @@ namespace GettingRealInvoiceToPdf
         }
 
         //Køre igennem alle faktura og får dem send, holder styr på mails som er afsend eller ikke afsted. Sletter afsendte mails 
-        public void SentDaliyEmails()
+        public static void SentDaliyEmails()
         {
             List<InvoiceData> daliySentInvoices = new List<InvoiceData>();
 
@@ -37,11 +37,11 @@ namespace GettingRealInvoiceToPdf
             //Menu X Mails not sent or all sent without problems
         }
 
-        private void AddInvoice(InvoiceData invoiceData)
+        private static void AddInvoice(InvoiceData invoiceData)
         {
             daliyInvoices.Add(invoiceData);
         }
-        private void RemoveInvoice(InvoiceData invoiceData)
+        private static void RemoveInvoice(InvoiceData invoiceData)
         {
             daliyInvoices.Remove(invoiceData);
         }
