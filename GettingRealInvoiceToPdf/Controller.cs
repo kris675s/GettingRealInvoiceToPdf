@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 namespace GettingRealInvoiceToPdf
 {
     public class Controller
-    {
-        //readonly List<InvoiceData> invoices = new List<InvoiceData>();
-        readonly Dictionary<int, InvoiceData> invoices = new Dictionary<int, InvoiceData>();
+    {        
+        private readonly Dictionary<int, InvoiceData> invoices = new Dictionary<int, InvoiceData>();
         // Calls DatabaseProcessing for all new invoices
         public void GetInvoices()
         {
+            DatabaseProcessing databaseProcessing = new DatabaseProcessing();
+            databaseProcessing.GetInvoices();
         }
-        //Tilføjerfaktura til en liste over alle daglige faktura, conventere til PDF
+
+        //Gets invoiceData obj from database, storage in Dict and calls pdf convertion
         public void NewInvoice(InvoiceData invoiceData)
         {
             InvoiceProcessing invoiceProcessing = new InvoiceProcessing();
@@ -24,26 +26,17 @@ namespace GettingRealInvoiceToPdf
             invoiceProcessing.ConvertToPDF(invoiceData);
         }
 
-        //Køre igennem alle faktura og får dem send, holder styr på mails som er afsend eller ikke afsted. Sletter afsendte mails 
-        public void SentEmails(Dictionary<InvoiceData, int> invoiceData)
+        //Loops our Dict, sends emails with the right parameters 
+        public void SendEmails()
         {
-            List<InvoiceData> sentInvoices = new List<InvoiceData>();
             EmailProcessing emailProcessing = new EmailProcessing();
 
-            //menu.invoicesNotToSent(daliyInvoices);
-
-            //Metode for at tjekke for fejl i afsendelse, og hvis fejl, tilføjer ikke til daliySentInvoices
-
-            invoiceData.ForEach(x => {
-                emailProcessing.SentEmail(x.InvoiceNr, x.Email);
-                sentInvoices.Add(x);
-            });
-
-            sentInvoices.ForEach(x => RemoveInvoice(x));
-
-            //Menu X Mails not sent or all sent without problems
+            foreach(KeyValuePair<int,InvoiceData>pair in invoices)
+            {
+                emailProcessing.SentEmail(pair.Value.InvoiceNr, pair.Value.Email);
+            }
+            
         }
-
 
         public void AddInvoice(InvoiceData invoiceData)
         {
@@ -54,7 +47,7 @@ namespace GettingRealInvoiceToPdf
         {
             invoices.Remove(key);
         }
-        public Dictionary<int, InvoiceData> GetInvoices()
+        public Dictionary<int, InvoiceData> GetInvoiceDict()
         {
             return invoices;
         }

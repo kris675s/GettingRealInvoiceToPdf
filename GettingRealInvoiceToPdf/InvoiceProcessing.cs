@@ -17,13 +17,13 @@ namespace GettingRealInvoiceToPdf
         //datetime used to create folders for saving .pdf without the users need to create new folders themselves
         //datetime is not compatible to show month and day names
         //this could be edited in a later version for a better user overview (a switch case translation with a list of 12 months)
-        private string filePath = (@"..\\FakturaPdf\" + DateTime.Now.Year + @"\" + DateTime.Now.Month + @"\" + DateTime.Now.Day + @"\");
+        private string filePath = (Properties.ProgramSettings.Default.FilePath + DateTime.Now.Year + @"\" + DateTime.Now.Month + @"\" + DateTime.Now.Day + @"\");
 
 
         public void ConvertToPDF(InvoiceData invoiceData)
         {
             //create new directory filepaths
-            System.IO.Directory.CreateDirectory(filePath);
+            Directory.CreateDirectory(filePath);
             Directory.CreateDirectory(DateTime.Now.ToString("dd-MM-yyyy"));
 
             //create new document using PDFSharp
@@ -43,7 +43,7 @@ namespace GettingRealInvoiceToPdf
             #endregion
             //Invoice Items
             #region Upper Right Corner
-            gfx.DrawString("FakturaNr:" + invoiceData.InvoiceNr, font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight);
+            gfx.DrawString("FakturaNr:" + invoiceData.InvoiceNo, font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight);
             //gfx.DrawString("cvr nr:" +invoiceData
             //gfx.DrawString("ny string
             //gfx.DrawString("ny string
@@ -66,15 +66,15 @@ namespace GettingRealInvoiceToPdf
             //gfx.DrawString("totalt pris
             #endregion
 
-            string fileName ="Faktura " + invoiceData.InvoiceNr +".pdf";
+            string fileName ="Faktura " + invoiceData.InvoiceNo +".pdf";
 
             //save file to path
             document.Save(filePath + fileName);
         }
-        public string getPdf(int invoiceNr)
+        public string getPdf(int invoiceNo)
         {
             string[] getPdf;
-            string invoiceString = Convert.ToString(invoiceNr);
+            string invoiceString = Convert.ToString(invoiceNo);
             getPdf = Directory.GetFiles(filePath, "*" + invoiceString + "*");
             return getPdf[0];
         }

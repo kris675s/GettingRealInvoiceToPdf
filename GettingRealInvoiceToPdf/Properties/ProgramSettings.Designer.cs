@@ -13,11 +13,11 @@ namespace GettingRealInvoiceToPdf.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
-    internal sealed partial class MailUserInfo : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class ProgramSettings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static MailUserInfo defaultInstance = ((MailUserInfo)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new MailUserInfo())));
+        private static ProgramSettings defaultInstance = ((ProgramSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new ProgramSettings())));
         
-        public static MailUserInfo Default {
+        public static ProgramSettings Default {
             get {
                 return defaultInstance;
             }
@@ -68,6 +68,18 @@ namespace GettingRealInvoiceToPdf.Properties {
             }
             set {
                 this["SmtpPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\\\FakturaPdf\\")]
+        public string FilePath {
+            get {
+                return ((string)(this["FilePath"]));
+            }
+            set {
+                this["FilePath"] = value;
             }
         }
     }

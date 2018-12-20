@@ -17,15 +17,15 @@ namespace GettingRealInvoiceToPdf
             
             SmtpClient smtp = new SmtpClient();
 
-            smtp.Host = Properties.MailUserInfo.Default.SmtpHost;
-            smtp.Port = Properties.MailUserInfo.Default.SmtpPort;
+            smtp.Host = Properties.ProgramSettings.Default.SmtpHost;
+            smtp.Port = Properties.ProgramSettings.Default.SmtpPort;
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-            smtp.Credentials = new NetworkCredential(Properties.MailUserInfo.Default.Mail, Properties.MailUserInfo.Default.MailPass);
+            smtp.Credentials = new NetworkCredential(Properties.ProgramSettings.Default.Mail, Properties.ProgramSettings.Default.MailPass);
             smtp.Timeout = 20000;
 
             MailMessage message = new MailMessage();
-            MailAddress mailAdress = new MailAddress(Properties.MailUserInfo.Default.Mail);
+            MailAddress mailAdress = new MailAddress(Properties.ProgramSettings.Default.Mail);
             message.To.Add(customerEmail);
             message.From = mailAdress;
             message.Attachments.Add(new Attachment(pdfPath));

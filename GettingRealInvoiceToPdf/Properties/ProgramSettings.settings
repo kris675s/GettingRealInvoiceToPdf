@@ -14,5 +14,8 @@
     <Setting Name="SmtpPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">587</Value>
     </Setting>
+    <Setting Name="FilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\\FakturaPdf\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
