@@ -44,7 +44,7 @@ namespace GettingRealInvoiceToPdf
                         invoiceData.HouseNo = reader["HusNr"].ToString();
                         invoiceData.PhoneNo = reader["TelefonNr"].ToString();
                         invoiceData.Email = reader["Email"].ToString();
-                        invoiceData.InvoiceNr = Convert.ToInt32(reader["FakturaNr"]);
+                        invoiceData.InvoiceNo = Convert.ToInt32(reader["FakturaNr"]);
 
                         controller.NewInvoice(invoiceData);
                         numRuns++;
