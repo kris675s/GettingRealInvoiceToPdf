@@ -30,10 +30,9 @@ namespace GettingRealInvoiceToPdf
             PdfDocument document = new PdfDocument();
             PdfPage page = document.AddPage();
 
-            //graphic input
+            #region Graphic input
             XGraphics gfx = XGraphics.FromPdfPage(page);
             XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
-
             //additional items to add not from the database
             //Upper Center Page
             //gfx.DrawString("Dragonslair Logo:" get image from folder
@@ -41,28 +40,31 @@ namespace GettingRealInvoiceToPdf
             //gfx.DrawString("Dragonslair WaterMark:" get image from folder
             //Lower Center Page
             //gfx.DrawString("tilføj dig til vores nyhedsmail." +register for newsletter = "tilmeld dig her"
-
+            #endregion
             //Invoice Items
-            //Upper Right Corner
+            #region Upper Right Corner
             gfx.DrawString("FakturaNr:" + invoiceData.InvoiceNr, font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight);
             //gfx.DrawString("cvr nr:" +invoiceData
             //gfx.DrawString("ny string
             //gfx.DrawString("ny string
+            #endregion
 
-            //Upper Left Corner
+            #region Upper Left Corner
             //gfx.DrawString("Name:" +invoiceData.firstName+,+ invoiceData.lastName)
             //gfx.DrawString("Adress:"+ invoiceData.adress)
             //gfx.DrawString("City:"+ invoiceData.city)
             //gfx.DrawString("Zipcode:+ invoiceData.zipcode)
             //gfx.DrawString("Email:+ invoiceData.Email)
+            #endregion
 
-            //Center of Page
+            #region Center of Page
             //gfx.DrawString("Artikel navn:" +invoiceData.articleName
             //  to the left of each artikle run loop
             //gfx.DrawString("foreach article, 1 article per line containing, article id, article name, article price
             //gfx.DrawString("totalt antal artikler
             //gfx.DrawString("pris:"+ invoiceData.articlePrice
             //gfx.DrawString("totalt pris
+            #endregion
 
             string fileName ="Faktura " + invoiceData.InvoiceNr +".pdf";
 

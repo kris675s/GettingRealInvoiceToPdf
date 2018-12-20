@@ -8,8 +8,12 @@ namespace GettingRealInvoiceToPdf
 {
     public class Controller
     {
-        readonly List<InvoiceData> daliyInvoices = new List<InvoiceData>();
-
+        //readonly List<InvoiceData> invoices = new List<InvoiceData>();
+        readonly Dictionary<int, InvoiceData> invoices = new Dictionary<int, InvoiceData>();
+        // Calls DatabaseProcessing for all new invoices
+        public void GetInvoices()
+        {
+        }
         //Tilføjerfaktura til en liste over alle daglige faktura, conventere til PDF
         public void NewInvoice(InvoiceData invoiceData)
         {
@@ -21,32 +25,38 @@ namespace GettingRealInvoiceToPdf
         }
 
         //Køre igennem alle faktura og får dem send, holder styr på mails som er afsend eller ikke afsted. Sletter afsendte mails 
-        public void SentDaliyEmails()
+        public void SentEmails(Dictionary<InvoiceData, int> invoiceData)
         {
-            List<InvoiceData> daliySentInvoices = new List<InvoiceData>();
+            List<InvoiceData> sentInvoices = new List<InvoiceData>();
             EmailProcessing emailProcessing = new EmailProcessing();
 
             //menu.invoicesNotToSent(daliyInvoices);
 
             //Metode for at tjekke for fejl i afsendelse, og hvis fejl, tilføjer ikke til daliySentInvoices
 
-            daliyInvoices.ForEach(x => {
+            invoiceData.ForEach(x => {
                 emailProcessing.SentEmail(x.InvoiceNr, x.Email);
-                daliySentInvoices.Add(x);
+                sentInvoices.Add(x);
             });
 
-            daliySentInvoices.ForEach(x => RemoveInvoice(x));
+            sentInvoices.ForEach(x => RemoveInvoice(x));
 
             //Menu X Mails not sent or all sent without problems
         }
 
-        private void AddInvoice(InvoiceData invoiceData)
+
+        public void AddInvoice(InvoiceData invoiceData)
         {
-            daliyInvoices.Add(invoiceData);
+            int key = invoices.Count + 1; 
+            invoices.Add(key, invoiceData);
         }
-        private void RemoveInvoice(InvoiceData invoiceData)
+        public void RemoveInvoice(int key)
         {
-            daliyInvoices.Remove(invoiceData);
+            invoices.Remove(key);
+        }
+        public Dictionary<int, InvoiceData> GetInvoices()
+        {
+            return invoices;
         }
         
     }
