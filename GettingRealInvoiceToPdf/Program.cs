@@ -12,7 +12,6 @@ namespace GettingRealInvoiceToPdf
     {
         static void Main(string[] args)
         {
-            string s = InvoiceProcessing.getPdf(666);
         }
     }
 }

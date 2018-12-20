@@ -6,29 +6,32 @@ using System.Threading.Tasks;
 
 namespace GettingRealInvoiceToPdf
 {
-    public static class Controller
+    public class Controller
     {
-        readonly static List<InvoiceData> daliyInvoices = new List<InvoiceData>();
+        readonly List<InvoiceData> daliyInvoices = new List<InvoiceData>();
 
         //Tilføjerfaktura til en liste over alle daglige faktura, conventere til PDF
-        public static void NewInvoice(InvoiceData invoiceData)
+        public void NewInvoice(InvoiceData invoiceData)
         {
+            InvoiceProcessing invoiceProcessing = new InvoiceProcessing();
+
             AddInvoice(invoiceData);
 
-            InvoiceProcessing.ConvertToPDF(invoiceData);
+            invoiceProcessing.ConvertToPDF(invoiceData);
         }
 
         //Køre igennem alle faktura og får dem send, holder styr på mails som er afsend eller ikke afsted. Sletter afsendte mails 
-        public static void SentDaliyEmails()
+        public void SentDaliyEmails()
         {
             List<InvoiceData> daliySentInvoices = new List<InvoiceData>();
+            EmailProcessing emailProcessing = new EmailProcessing();
 
             //menu.invoicesNotToSent(daliyInvoices);
 
             //Metode for at tjekke for fejl i afsendelse, og hvis fejl, tilføjer ikke til daliySentInvoices
 
             daliyInvoices.ForEach(x => {
-                EmailProcessing.SentEmail(x.InvoiceNr, x.Email);
+                emailProcessing.SentEmail(x.InvoiceNr, x.Email);
                 daliySentInvoices.Add(x);
             });
 
@@ -37,11 +40,11 @@ namespace GettingRealInvoiceToPdf
             //Menu X Mails not sent or all sent without problems
         }
 
-        private static void AddInvoice(InvoiceData invoiceData)
+        private void AddInvoice(InvoiceData invoiceData)
         {
             daliyInvoices.Add(invoiceData);
         }
-        private static void RemoveInvoice(InvoiceData invoiceData)
+        private void RemoveInvoice(InvoiceData invoiceData)
         {
             daliyInvoices.Remove(invoiceData);
         }
