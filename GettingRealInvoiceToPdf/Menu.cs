@@ -68,7 +68,7 @@ namespace GettingRealInvoiceToPdf
 
             foreach(KeyValuePair<int, InvoiceData> pair in invoiceDic)
             {
-                Console.WriteLine(pair.Key.ToString(), pair.Value.InvoiceNr);
+                Console.WriteLine(pair.Key.ToString(), pair.Value.InvoiceNo);
             }
 
             Console.WriteLine(

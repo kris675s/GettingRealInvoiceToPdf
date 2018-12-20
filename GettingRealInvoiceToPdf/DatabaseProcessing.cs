@@ -25,18 +25,18 @@ namespace GettingRealInvoiceToPdf
                 {
 
                     int numRuns = 1; 
-
+                    //Uses a for-loop in order to retrieve data connected to each Id
                     for (int i = 0; i < 4; i++)
                     {
                         InvoiceData invoiceData = new InvoiceData();
-
+                        //Opens the connection to the database as well as the Stored Procedure with it's parameters
                         con.Open();
                         SqlCommand cmd = new SqlCommand("GetInvoice", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add(new SqlParameter("@Id", numRuns));
                         SqlDataReader reader = cmd.ExecuteReader();
                         reader.Read();
-
+                        //retrieves the desired information for each Id and saves it in an InvoiceData-object
                         string id = reader["Id"].ToString();
                         invoiceData.FName = reader["FNavn"].ToString();
                         invoiceData.LName = reader["LNavn"].ToString();

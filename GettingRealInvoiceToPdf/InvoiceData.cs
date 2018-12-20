@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GettingRealInvoiceToPdf
 {
+    //What the InvoiceData-object consists of.
     public class InvoiceData
     {
         public string FName { get; set; }

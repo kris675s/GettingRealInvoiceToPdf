@@ -43,7 +43,7 @@ namespace GettingRealInvoiceToPdf
             #endregion
             //Invoice Items
             #region Upper Right Corner
-            gfx.DrawString("FakturaNr:" + invoiceData.InvoiceNr, font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight);
+            gfx.DrawString("FakturaNr:" + invoiceData.InvoiceNo, font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopRight);
             //gfx.DrawString("cvr nr:" +invoiceData
             //gfx.DrawString("ny string
             //gfx.DrawString("ny string
@@ -66,7 +66,7 @@ namespace GettingRealInvoiceToPdf
             //gfx.DrawString("totalt pris
             #endregion
 
-            string fileName ="Faktura " + invoiceData.InvoiceNr +".pdf";
+            string fileName ="Faktura " + invoiceData.InvoiceNo +".pdf";
 
             //save file to path
             document.Save(filePath + fileName);
