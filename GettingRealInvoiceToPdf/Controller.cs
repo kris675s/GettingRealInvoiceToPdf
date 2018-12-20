@@ -8,49 +8,34 @@ namespace GettingRealInvoiceToPdf
 {
     public class Controller
     {        
-        private readonly Dictionary<int, InvoiceData> invoices = new Dictionary<int, InvoiceData>();
+        public List<InvoiceData> Invoices { get; private set; }
         // Calls DatabaseProcessing for all new invoices
         public void GetInvoices()
         {
             DatabaseProcessing databaseProcessing = new DatabaseProcessing();
-            databaseProcessing.GetInvoices();
+            Invoices = databaseProcessing.GetInvoices();
+            Invoices.ForEach(x => NewInvoice(x));
         }
 
-        //Gets invoiceData obj from database, storage in Dict and calls pdf convertion
+        //Gets invoiceData obj from database, storage in List and calls pdf convertion
         public void NewInvoice(InvoiceData invoiceData)
         {
             InvoiceProcessing invoiceProcessing = new InvoiceProcessing();
 
-            AddInvoice(invoiceData);
-
             invoiceProcessing.ConvertToPDF(invoiceData);
         }
 
-        //Loops our Dict, sends emails with the right parameters 
+        //Loops our List, sends emails with the right parameters 
         public void SendEmails()
         {
             EmailProcessing emailProcessing = new EmailProcessing();
 
-            foreach(KeyValuePair<int,InvoiceData>pair in invoices)
-            {
-                emailProcessing.SendEmail(pair.Value.InvoiceNo, pair.Value.Email);
-            }
-            
+            Invoices.ForEach(x => emailProcessing.SendEmail(x.InvoiceNo, x.Email));            
         }
 
-        public void AddInvoice(InvoiceData invoiceData)
+        public void RemoveInvoice(int index)
         {
-            int key = (invoices.Count + 1);
-            invoices.Add(key, invoiceData);
-        }
-        public void RemoveInvoice(int key)
-        {
-            invoices.Remove(key);
-        }
-        public Dictionary<int, InvoiceData> GetInvoiceDict()
-        {
-            return invoices;
-        }
-        
+            Invoices.RemoveAt(index);
+        }        
     }
 }

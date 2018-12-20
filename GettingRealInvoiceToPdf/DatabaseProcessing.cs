@@ -10,13 +10,23 @@ namespace GettingRealInvoiceToPdf
 {
     public class DatabaseProcessing
     {
-        private string connnectionString =
-            "Server=EALSQL1.eal.local; Database= A_DB02_2018; User Id=A_STUDENT02; Password=A_OPENDB02";
+        private string connnectionString = "Server=EALSQL1.eal.local; Database= A_DB02_2018; User Id=A_STUDENT02; Password=A_OPENDB02";
 
-
-
-        public void GetInvoices()
+        public List<InvoiceData> GetInvoices()
         {
+            List<InvoiceData> invoices = new List<InvoiceData>();
+
+            #region Database Stump
+            /*
+            invoices.Add(new InvoiceData { InvoiceNo = 2000, Email = "drakthan87@gmail.com" });
+            invoices.Add(new InvoiceData { InvoiceNo = 3000, Email = "drakthan87@gmail.com" });
+            invoices.Add(new InvoiceData { InvoiceNo = 4000, Email = "drakthan87@gmail.com" });
+            invoices.Add(new InvoiceData { InvoiceNo = 5000, Email = "drakthan87@gmail.com" });
+
+            return invoices;
+            */
+            #endregion
+
             Controller controller = new Controller();
             using (SqlConnection con = new SqlConnection(connnectionString))
             {
@@ -25,6 +35,7 @@ namespace GettingRealInvoiceToPdf
                 {
 
                     int numRuns = 1; 
+
                     //Uses a for-loop in order to retrieve data connected to each Id
                     for (int i = 0; i < 4; i++)
                     {
@@ -44,23 +55,22 @@ namespace GettingRealInvoiceToPdf
                         invoiceData.HouseNo = reader["HusNr"].ToString();
                         invoiceData.PhoneNo = reader["TelefonNr"].ToString();
                         invoiceData.Email = reader["Email"].ToString();
-                        invoiceData.InvoiceNo = Convert.ToInt32(reader["FakturaNr"]);
+                        invoiceData.InvoiceNo = Convert.ToInt32(reader["FakturaNr"]);                        
 
-                        controller.NewInvoice(invoiceData);
-                        numRuns++;
-                        con.Close();
-                        
+                        invoices.Add(invoiceData);
+                        con.Close();                    
+                        numRuns++;                        
                     }
-
-                    
                 }
-
 
                 catch (SqlException e)
                 {
                     Console.WriteLine("UPS" + " " + e.Message);
                 }
+
             }
+
+            return invoices;
         }
     }
 }

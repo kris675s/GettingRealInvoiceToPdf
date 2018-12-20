@@ -3,51 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace GettingRealInvoiceToPdf
 {
     public class Menu
     {
-        public Controller Controller { get; private set; }
+        private Controller controller;
 
         public void StartMenu()
         {
-            Controller = new Controller();
+            controller = new Controller();
 
             int userChoise = 0;
             do
             {
+                // MainMenu
+                ShowMainMenu();
+                userChoise = Convert.ToInt32(Console.ReadLine());
+
 
                 switch (userChoise)
-                {
-                    case 0: // MainMenu
-                        ShowMainMenu();
-                        userChoise = Convert.ToInt32(Console.ReadLine());
-                        break;
+                {                  
                     case 1: // Get and convert invoices to PDF
                         Console.Clear();
                         Console.WriteLine(
                             "Dagens faktura hentes samt konverteres til PDF, kan findes i: {0}\n" +
-                            "Enter for hovedmenu", (@"..\\FakturaPdf\" + DateTime.Now.Year + "\\" + DateTime.Now.Month + "\\" + DateTime.Now.Day));
-                        Controller.GetInvoices();
+                            "\n" +
+                            "Enter for hovedmenu", Path.GetFullPath(@"..\\FakturaPdf\" + DateTime.Now.Year + "\\" + DateTime.Now.Month + "\\" + DateTime.Now.Day));
+                        controller.GetInvoices();
                         Console.ReadLine();
-                        goto case 0;
+                        break;
+
                     case 2: //Send Invoices
-                        string invoicesToRemove = GetDaliyInvoices();
-                        if (invoicesToRemove != "")
+                        int[] invoicesToRemove = null;
+                        do
                         {
-                            RemoveInvoices(invoicesToRemove);
-                            goto case 2;
-                        }
-                        else
-                        {
-                            Controller.SendEmails();
-                            Console.WriteLine(
-                                "Emails bliver sendt\n" +
-                                "tryk Enter for at gå til hovedmenu");
-                            Console.ReadLine();
-                            goto case 0;
-                        }
+                            invoicesToRemove = GetDaliyInvoices();
+
+                            if (invoicesToRemove.Length != 0)
+                            {
+                                RemoveInvoices(invoicesToRemove);
+                            }
+
+                        } while (invoicesToRemove.Length != 0);
+                        
+                        controller.SendEmails();
+                        Console.WriteLine(
+                            "Emails bliver sendt\n" +
+                            "tryk Enter for at gå til hovedmenu");
+                        Console.ReadLine();
+                        break;                        
+
                     case 3: // Settings for smtp server
                         SetSmtpServerSettings();
                         Console.Clear();
@@ -58,7 +65,8 @@ namespace GettingRealInvoiceToPdf
                             "Login: {2}\n" +
                             "tryk Enter for at gå til hovedmenu", Properties.ProgramSettings.Default.SmtpHost, Properties.ProgramSettings.Default.SmtpPort, Properties.ProgramSettings.Default.Mail);
                         Console.ReadLine();
-                        goto case 0;
+                        break;
+
                     case 4: //Set filePath
                         SetFilePath();
                         Console.Clear();
@@ -67,10 +75,10 @@ namespace GettingRealInvoiceToPdf
                             "{0}\n" +
                             "tryk Enter for at gå til hovedmenu", Properties.ProgramSettings.Default.FilePath);
                         Console.ReadLine();
-                        goto case 0;
+                        break;
 
                     default:
-                        goto case 0;
+                        break;
                 }
 
             } while (userChoise != 6);
@@ -94,16 +102,16 @@ namespace GettingRealInvoiceToPdf
                 );
         }
 
-        private string GetDaliyInvoices()
+        private int[] GetDaliyInvoices()
         {
-            Dictionary<int, InvoiceData> invoiceDic = Controller.GetInvoiceDict();
+            List<InvoiceData> invoices = controller.Invoices;
 
             Console.Clear();
             Console.WriteLine("Dagens Faktura\n");
 
-            foreach(KeyValuePair<int, InvoiceData> pair in invoiceDic)
+            for (int i = 0; i < invoices.Count; i++)
             {
-                Console.WriteLine(pair.Key.ToString(), pair.Value.InvoiceNo);
+                Console.WriteLine("{0} - {1}", i + 1, invoices[i].InvoiceNo);
             }
 
             Console.WriteLine(
@@ -112,19 +120,35 @@ namespace GettingRealInvoiceToPdf
                 "Tryk enter for at forsætte");
 
             string invoicesToRemove = Console.ReadLine();
+            int[] invoiceIndex = new int[0];
 
-            return invoicesToRemove;
+            if (invoicesToRemove != "")
+            {
+
+                string[] sArr = invoicesToRemove.Split(',');
+                invoiceIndex = Array.ConvertAll<string, int>(sArr, int.Parse);
+
+                for (int i = 0; i < invoiceIndex.Length; i++)
+                {
+                    invoiceIndex[i] -= 1;
+                }
+
+            }
+
+            return invoiceIndex;
         }
 
-        private void RemoveInvoices(string invoicesToRemove)
+        private void RemoveInvoices(int[] invoicesToRemove)
         {
-            string[] sArr = invoicesToRemove.Split(',');
-            int[] invoiceNo = Array.ConvertAll<string, int>(sArr, int.Parse);
-            
-            foreach(int key in invoiceNo)
+            foreach (int index in invoicesToRemove)
             {
-                Controller.RemoveInvoice(key);
-            }   
+                controller.RemoveInvoice(index);
+
+                for (int i = 0; i < invoicesToRemove.Length; i++)
+                {
+                    invoicesToRemove[i] -= 1;
+                }
+            } 
         }
 
         private void SetSmtpServerSettings()
@@ -166,10 +190,10 @@ namespace GettingRealInvoiceToPdf
             Console.Clear();
             Console.WriteLine(
                 "PDF'er bliver gemt i: {0}\n" +
-                "Enter for at beholde nuværende sti, ellers angiv ny fil sti", Properties.ProgramSettings.Default.FilePath);
+                "Enter for at beholde nuværende sti, ellers angiv ny fil sti", Path.GetFullPath(Properties.ProgramSettings.Default.FilePath));
             string userInput = Console.ReadLine();
             if (userInput != "")
-                Properties.ProgramSettings.Default.SmtpHost = userInput;
+                Properties.ProgramSettings.Default.FilePath = userInput;
         }
         #endregion
     }
