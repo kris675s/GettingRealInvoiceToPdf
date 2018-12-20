@@ -40,7 +40,7 @@ namespace GettingRealInvoiceToPdf
 
         public void AddInvoice(InvoiceData invoiceData)
         {
-            int key = invoices.Count + 1; 
+            int key = (invoices.Count + 1);
             invoices.Add(key, invoiceData);
         }
         public void RemoveInvoice(int key)

@@ -22,19 +22,19 @@ namespace GettingRealInvoiceToPdf
                 {
                     case 0: // MainMenu
                         ShowMainMenu();
-                        userChoise = Console.Read();
+                        userChoise = Convert.ToInt32(Console.ReadLine());
                         break;
                     case 1: // Get and convert invoices to PDF
-                        Controller.GetInvoices();
                         Console.Clear();
                         Console.WriteLine(
-                            "Dagens faktura hentes samt conventeres til PDF, kan findes {0}\n" +
+                            "Dagens faktura hentes samt konverteres til PDF, kan findes i: {0}\n" +
                             "Enter for hovedmenu", (@"..\\FakturaPdf\" + DateTime.Now.Year + "\\" + DateTime.Now.Month + "\\" + DateTime.Now.Day));
-                        Console.Read();
+                        Controller.GetInvoices();
+                        Console.ReadLine();
                         goto case 0;
-                    case 2: //Sent Invoices
+                    case 2: //Send Invoices
                         string invoicesToRemove = GetDaliyInvoices();
-                        if (invoicesToRemove != null)
+                        if (invoicesToRemove != "")
                         {
                             RemoveInvoices(invoicesToRemove);
                             goto case 2;
@@ -43,9 +43,9 @@ namespace GettingRealInvoiceToPdf
                         {
                             Controller.SendEmails();
                             Console.WriteLine(
-                                "Emails bliver sent\n" +
-                                "Enter for hovedmenu");
-                            Console.Read();
+                                "Emails bliver sendt\n" +
+                                "tryk Enter for at gå til hovedmenu");
+                            Console.ReadLine();
                             goto case 0;
                         }
                     case 3: // Settings for smtp server
@@ -56,8 +56,8 @@ namespace GettingRealInvoiceToPdf
                             "Server: {0}\n" +
                             "Port: {1}\n" +
                             "Login: {2}\n" +
-                            "Enter for hovedmenu", Properties.ProgramSettings.Default.SmtpHost, Properties.ProgramSettings.Default.SmtpPort, Properties.ProgramSettings.Default.Mail);
-                        Console.Read();
+                            "tryk Enter for at gå til hovedmenu", Properties.ProgramSettings.Default.SmtpHost, Properties.ProgramSettings.Default.SmtpPort, Properties.ProgramSettings.Default.Mail);
+                        Console.ReadLine();
                         goto case 0;
                     case 4: //Set filePath
                         SetFilePath();
@@ -65,16 +65,19 @@ namespace GettingRealInvoiceToPdf
                         Console.WriteLine(
                             "Din fil sti er blevet opdateret til:\n" +
                             "{0}\n" +
-                            "Enter for hovedmenu",Properties.ProgramSettings.Default.FilePath);
-                        Console.Read();
+                            "tryk Enter for at gå til hovedmenu", Properties.ProgramSettings.Default.FilePath);
+                        Console.ReadLine();
+                        goto case 0;
+
+                    default:
                         goto case 0;
                 }
 
             } while (userChoise != 6);
+
         }
 
         #region Menu Methods
-
         private void ShowMainMenu()
         {
             Console.Clear();
@@ -87,7 +90,7 @@ namespace GettingRealInvoiceToPdf
                 "3. Indstillger for smtp server\n" +
                 "4. Fil sti\n" +
                 "\n" +
-                "5. Quit"
+                "6. Quit"
                 );
         }
 
@@ -106,7 +109,7 @@ namespace GettingRealInvoiceToPdf
             Console.WriteLine(
                 "\n" +
                 "Vælg faktura at fjerne eks. 3, 5, 7. Afslut med Enter\n" +
-                "Enter for at forsætte");
+                "Tryk enter for at forsætte");
 
             string invoicesToRemove = Console.ReadLine();
 
@@ -116,61 +119,58 @@ namespace GettingRealInvoiceToPdf
         private void RemoveInvoices(string invoicesToRemove)
         {
             string[] sArr = invoicesToRemove.Split(',');
-            int[] invoiceNums = Array.ConvertAll<string, int>(sArr, int.Parse);
+            int[] invoiceNo = Array.ConvertAll<string, int>(sArr, int.Parse);
             
-            foreach(int key in invoiceNums)
+            foreach(int key in invoiceNo)
             {
                 Controller.RemoveInvoice(key);
-            }
+            }   
         }
 
         private void SetSmtpServerSettings()
         {
             Console.Clear();
             Console.WriteLine(
-                "Din smtp server er {0}\n" +
-                "Enter for at beholde samme, ellers angiv ny smtp server", Properties.ProgramSettings.Default.SmtpHost);
+                "Din smtp server er: {0}\n" +
+                "Tryk enter for at beholde samme, ellers angiv ny smtp server", Properties.ProgramSettings.Default.SmtpHost);
             string userInputHost = Console.ReadLine();
-            if (userInputHost != null)
+            if (userInputHost != "")
                 Properties.ProgramSettings.Default.SmtpHost = userInputHost;
 
             Console.Clear();
             Console.WriteLine(
-                "Din smtp port er {0}\n" +
-                "Enter for at beholde samme, ellers angiv ny smtp port", Properties.ProgramSettings.Default.SmtpPort);
-            int userInputPort = int.Parse(Console.ReadLine());
-            if (userInputPort != 0)
-                Properties.ProgramSettings.Default.SmtpPort = userInputPort;
+                "Din smtp port er: {0}\n" +
+                "Tryk enter for at beholde samme, ellers angiv ny smtp port", Properties.ProgramSettings.Default.SmtpPort);
+            string userInputPort = Console.ReadLine();
+            if (userInputPort != "")
+                Properties.ProgramSettings.Default.SmtpPort = int.Parse(userInputPort);
 
             Console.Clear();
             Console.WriteLine(
-                "Din smtp mail adresse er {0}\n" +
-                "Enter for at beholde samme, ellers angiv ny smtp port", Properties.ProgramSettings.Default.Mail);
+                "Din smtp mail adresse er: {0}\n" +
+                "Tryk enter for at beholde samme, ellers angiv ny smtp mail adresse", Properties.ProgramSettings.Default.Mail);
             string userInputMail = Console.ReadLine();
-            if (userInputMail != null)
+            if (userInputMail != "")
                 Properties.ProgramSettings.Default.Mail = userInputMail;
 
             Console.Clear();
             Console.WriteLine(
-                "Din smtp mail adresse er {0}\n" +
-                "Enter for at beholde samme, ellers angiv ny smtp port", Properties.ProgramSettings.Default.MailPass);
+                "Dit smtp mail password er: ********\n" +
+                "Tryk enter for at beholde samme, ellers angiv nyt password", Properties.ProgramSettings.Default.MailPass);
             string userInputMailpass = Console.ReadLine();
-            if (userInputMailpass != null)
+            if (userInputMailpass != "")
                 Properties.ProgramSettings.Default.Mail = userInputMailpass;
         }
         private void SetFilePath()
         {
             Console.Clear();
             Console.WriteLine(
-                "PDF'er bliver gemt i {0}\n" +
-                "Enter for at beholde samme, ellers angiv ny fil sti", Properties.ProgramSettings.Default.FilePath);
+                "PDF'er bliver gemt i: {0}\n" +
+                "Enter for at beholde nuværende sti, ellers angiv ny fil sti", Properties.ProgramSettings.Default.FilePath);
             string userInput = Console.ReadLine();
-            if (userInput != null)
+            if (userInput != "")
                 Properties.ProgramSettings.Default.SmtpHost = userInput;
         }
-
         #endregion
-
-
     }
 }
