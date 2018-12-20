@@ -33,7 +33,7 @@ namespace GettingRealInvoiceToPdf
 
             foreach(KeyValuePair<int,InvoiceData>pair in invoices)
             {
-                emailProcessing.SentEmail(pair.Value.InvoiceNr, pair.Value.Email);
+                emailProcessing.SendEmail(pair.Value.InvoiceNo, pair.Value.Email);
             }
             
         }

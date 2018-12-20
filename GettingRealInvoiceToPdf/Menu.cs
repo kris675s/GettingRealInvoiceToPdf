@@ -59,7 +59,7 @@ namespace GettingRealInvoiceToPdf
                             "Enter for hovedmenu", Properties.ProgramSettings.Default.SmtpHost, Properties.ProgramSettings.Default.SmtpPort, Properties.ProgramSettings.Default.Mail);
                         Console.Read();
                         goto case 0;
-                    case 4:
+                    case 4: //Set filePath
                         SetFilePath();
                         Console.Clear();
                         Console.WriteLine(
@@ -84,7 +84,8 @@ namespace GettingRealInvoiceToPdf
                 "InvoicePDF\n" +
                 "1. Hent dagens faktura\n" +
                 "2. Send dagens faktura\n" +
-                "3. Indstillinger\n" +
+                "3. Indstillger for smtp server\n" +
+                "4. Fil sti\n" +
                 "\n" +
                 "5. Quit"
                 );
