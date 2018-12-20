@@ -10,13 +10,14 @@ namespace GettingRealInvoiceToPdf
 {
     public class DatabaseController
     {
-        private static string connnectionString =
+        private string connnectionString =
             "Server=EALSQL1.eal.local; Database= A_DB02_2018; User Id=A_STUDENT02; Password=A_OPENDB02";
 
         
 
         private void Run()
         {
+            Controller controller = new Controller();
             using (SqlConnection con = new SqlConnection(connnectionString))
             {
                 
@@ -47,7 +48,7 @@ namespace GettingRealInvoiceToPdf
                         invoiceData.Email = reader["Email"].ToString();
                         invoiceData.InvoiceNr = Convert.ToInt32(reader["FakturaNr"]);
 
-                        Controller.NewInvoice(invoiceData);
+                        controller.NewInvoice(invoiceData);
 
                        // Console.WriteLine("{0} Navn: {1} {2} Adresse: {3} {4} Tlf nr: {5} Email: {6}",id,firstName,lastName,vejNavn,husNr,tlfNr,email);
                         numRuns++;
