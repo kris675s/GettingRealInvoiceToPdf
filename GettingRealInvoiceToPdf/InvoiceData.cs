@@ -10,9 +10,9 @@ namespace GettingRealInvoiceToPdf
     {
         public string FName { get; set; }
         public string LName { get; set; }
-        public string VejNavn { get; set; }
-        public string HusNr { get; set; }
-        public string TelefonNr { get; set; }
+        public string Street { get; set; }
+        public string HouseNo { get; set; }
+        public string PhoneNo { get; set; }
         public string Email { get; set; }
         public int InvoiceNr { get; set; }
 
