@@ -18,8 +18,7 @@ namespace GettingRealInvoiceToPdf
         //datetime is not compatible to show month and day names
         //this could be edited in a later version for a better user overview (a switch case translation with a list of 12 months)
         private string filePath = (Properties.ProgramSettings.Default.FilePath + DateTime.Now.Year + @"\" + DateTime.Now.Month + @"\" + DateTime.Now.Day + @"\");
-
-
+        
         public void ConvertToPDF(InvoiceData invoiceData)
         {
             //create new directory filepaths
