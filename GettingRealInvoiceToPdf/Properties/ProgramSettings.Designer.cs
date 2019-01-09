@@ -82,5 +82,41 @@ namespace GettingRealInvoiceToPdf.Properties {
                 this["FilePath"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\\\ImageFolder\\LogoFolder\\")]
+        public string LogoFolder {
+            get {
+                return ((string)(this["LogoFolder"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\\\ImageFolder\\WatermarkLogo\\")]
+        public string WatermarkFolder {
+            get {
+                return ((string)(this["WatermarkFolder"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\\\ImageFolder\\")]
+        public string ImageFolder {
+            get {
+                return ((string)(this["ImageFolder"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\\\MiscFolder\\")]
+        public string Misc {
+            get {
+                return ((string)(this["Misc"]));
+            }
+        }
     }
 }

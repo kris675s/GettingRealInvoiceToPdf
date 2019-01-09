@@ -17,5 +17,10 @@ namespace GettingRealInvoiceToPdf
         public string Email { get; set; }
         public int InvoiceNo { get; set; }
 
+        //stubs for PDF creation
+        //total price
+        //article info
+        //
+
     }
 }

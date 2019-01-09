@@ -1,19 +1,9 @@
-﻿{date}
-
-To:	{Name}
-	{Address}
-	{City, State, Zip}
-
-
-kære {Recipient},
+﻿Kære Kunde
 
 Tak for din bestilling fra vores Webshop
-din ordre: {ordernumber}
-bestilt d.: {purchase.date}
-total beløb {amount}.
 
 Din bestilling er nu pakket og afventer afhentning af vores distributør:
-alt efter din ordretype, forventer vi en leveringstid på -
+Alt efter din ordretype, forventer vi en leveringstid på -
 
 1-2 hverdage: 
 	Bestiller du inden 12:00 mandag-fredag, bliver ordren behandlet samme dag.
@@ -23,10 +13,10 @@ alt efter din ordretype, forventer vi en leveringstid på -
 	Vi samler dem sammen ét sted, og afsender bestillingen samlet. 
 	Vi har forsendelser internt imellem butikkerne 2-3 gange om ugen, derfor estimatet som udgangspunktet ikke kan være mere præcist.
 
-vedhæftet i denne mail er din digitale faktura, den er gældende bevis til dig for dit køb. gem den digitalt så har du ligesom os sparet på naturen. tak.
+vedhæftet i denne mail er din digitale faktura, den er gældende bevis til dig, for dit køb. gem den digitalt så har du ligesom os, sparet på naturen. tak.
 
-vil du vide mere om Dragonslair og hvad der sker? så tilmeld dig vores nyhedsbrev (her)link:https://dragonslair.eu/da/kundeservice/nyhedsbreve/tilmeld-nyhedsbrev"
+vil du vide mere om DragonsLair og hvad der sker i vores community? så tilmeld dig vores nyhedsbrev (her)link:https://dragonslair.eu/da/kundeservice/nyhedsbreve/tilmeld-nyhedsbrev"
 
-Thank you,
+mvh
 
-{Company}
+Dragons Lair

@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GettingRealInvoiceToPdf.Properties" GeneratedClassName="MailUserInfo">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GettingRealInvoiceToPdf.Properties" GeneratedClassName="ProgramSettings">
   <Profiles />
   <Settings>
     <Setting Name="Mail" Type="System.String" Scope="User">
@@ -16,6 +16,18 @@
     </Setting>
     <Setting Name="FilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">..\\FakturaPdf\</Value>
+    </Setting>
+    <Setting Name="LogoFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\\ImageFolder\LogoFolder\</Value>
+    </Setting>
+    <Setting Name="WatermarkFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\\ImageFolder\WatermarkLogo\</Value>
+    </Setting>
+    <Setting Name="ImageFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\\ImageFolder\</Value>
+    </Setting>
+    <Setting Name="Misc" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\\MiscFolder\</Value>
     </Setting>
   </Settings>
 </SettingsFile>
