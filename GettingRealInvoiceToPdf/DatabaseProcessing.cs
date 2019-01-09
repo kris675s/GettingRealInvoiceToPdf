@@ -44,6 +44,7 @@ namespace GettingRealInvoiceToPdf
                         SqlCommand cmd = new SqlCommand("GetInvoice", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add(new SqlParameter("@Id", numRuns));
+                        cmd.Parameters.Add(new SqlParameter("@FakturaNr", numRuns));
                         SqlDataReader reader = cmd.ExecuteReader();
                         reader.Read();
                         //retrieves the desired information for each Id and saves it in an InvoiceData-object
