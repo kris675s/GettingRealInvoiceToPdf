@@ -16,7 +16,7 @@ namespace GettingRealInvoiceToPdf
         {
             List<InvoiceData> invoices = new List<InvoiceData>();
 
-            #region Database Stump
+            #region Database Stub
             /*
             invoices.Add(new InvoiceData { InvoiceNo = 2000, Email = "drakthan87@gmail.com" });
             invoices.Add(new InvoiceData { InvoiceNo = 3000, Email = "drakthan87@gmail.com" });
@@ -26,8 +26,7 @@ namespace GettingRealInvoiceToPdf
             return invoices;
             */
             #endregion
-
-            Controller controller = new Controller();
+            
             using (SqlConnection con = new SqlConnection(connnectionString))
             {
 
@@ -45,6 +44,7 @@ namespace GettingRealInvoiceToPdf
                         SqlCommand cmd = new SqlCommand("GetInvoice", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add(new SqlParameter("@Id", numRuns));
+                        cmd.Parameters.Add(new SqlParameter("@FakturaNr", numRuns));
                         SqlDataReader reader = cmd.ExecuteReader();
                         reader.Read();
                         //retrieves the desired information for each Id and saves it in an InvoiceData-object
@@ -70,7 +70,7 @@ namespace GettingRealInvoiceToPdf
 
             }
 
-            return invoices;
+            return invoices;            
         }
     }
 }

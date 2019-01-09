@@ -22,7 +22,6 @@ namespace GettingRealInvoiceToPdf
                 ShowMainMenu();
                 userChoise = Convert.ToInt32(Console.ReadLine());
 
-
                 switch (userChoise)
                 {                  
                     case 1: // Get and convert invoices to PDF
@@ -185,6 +184,7 @@ namespace GettingRealInvoiceToPdf
             if (userInputMailpass != "")
                 Properties.ProgramSettings.Default.Mail = userInputMailpass;
         }
+
         private void SetFilePath()
         {
             Console.Clear();
