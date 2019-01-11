@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using System.IO;
-using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
 
 namespace GettingRealInvoiceToPdf
 {
@@ -32,7 +25,8 @@ namespace GettingRealInvoiceToPdf
             Directory.CreateDirectory(DateTime.Now.ToString("dd-MM-yyyy"));
             Directory.CreateDirectory(imageFolder);
             Directory.CreateDirectory(miscFolder);
-            //error msg if folders are empty
+            /*
+            error msg if folders are empty
             if (imageFolder.Length == 0)
             {
                 Console.WriteLine("imagefolder for watermark and/or logo is empty. please add images to the directory for the pdf to be created correctly");
@@ -47,6 +41,7 @@ namespace GettingRealInvoiceToPdf
             {
                 Console.WriteLine("watermarkFolder is empty. please add a image to the directory for the pdf to be created correctly");
             }
+            */
             //create new document using PDFSharp
             PdfDocument document = new PdfDocument();
             PdfPage page = document.AddPage();
